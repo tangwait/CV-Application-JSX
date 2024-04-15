@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Card from './Card';
 
-export default function InfoCardInput() {
+export default function WorkExperienceCardInput() {
     const [cards, setCards] = useState([]);
     const [company, setCompany] = useState('');
     const [position, setPosition] = useState('');
@@ -19,6 +19,7 @@ export default function InfoCardInput() {
 
     function handleClick() {
         const newCard = {
+            cardClass: "work-experience",
             company: company,
             position: position,
             responsibilities: responsibilities
@@ -38,15 +39,16 @@ export default function InfoCardInput() {
 
     return (
         <>
-        <div className="general-experience-inputs">
+        <div className="work-experience-inputs">
+            <h2>Enter your work experience here:</h2>
         <form>
-            <Education 
+            <ExperienceInput 
                 label="Company" value={company} inputType="text" onChange={handleCompany}
                 />
-            <Education 
+            <ExperienceInput 
                 label="Position" value={position} inputType="text" onChange={handlePosition}
                 />
-            <Education 
+            <ExperienceInput 
                 label="Responsibilities" value={responsibilities} inputType="text" onChange={handleResponsibilities}
                 />
         </form>
@@ -59,6 +61,7 @@ export default function InfoCardInput() {
         {cards.map((card, index) => (
                 <Card 
                     key={index} 
+                    cardClass={card.cardClass}
                     title={card.company} 
                     subtitle={card.position} 
                     description={card.responsibilities}
@@ -69,7 +72,7 @@ export default function InfoCardInput() {
     )
 }
 
-function Education({ label, value, inputType, onChange }) {
+function ExperienceInput({ label, value, inputType, onChange }) {
     return (
         <>
             <label>

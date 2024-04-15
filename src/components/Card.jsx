@@ -1,6 +1,6 @@
-export default function Card({ title, subtitle, description, onRemove }) {
+export default function Card({ cardClass, title, subtitle, description, onRemove }) {
     return (
-        <div className="card">
+        <div className={cardClass}>
             <div className="card-header">
                 <h3>{title}</h3>
                 <p>{subtitle}</p>

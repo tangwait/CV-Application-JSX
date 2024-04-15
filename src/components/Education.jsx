@@ -19,6 +19,7 @@ export default function EduCardInput() {
 
     function handleClick() {
         const newCard = {
+            cardClass: "education",
             name: name,
             major: major,
             attendence: attendence
@@ -38,15 +39,16 @@ export default function EduCardInput() {
 
     return (
         <>
-        <div className="general-edu-inputs">
+        <div className="education-input">
+            <h2>Enter your educational history here:</h2>
         <form>
-            <Education 
+            <EducationInput 
                 label="Name" value={name} inputType="text" onChange={handleName}
                 />
-            <Education 
+            <EducationInput 
                 label="Major" value={major} inputType="text" onChange={handleMajor}
                 />
-            <Education 
+            <EducationInput 
                 label="Attendence Date" value={attendence} inputType="date" onChange={handleAttendence}
                 />
         </form>
@@ -55,10 +57,11 @@ export default function EduCardInput() {
         <button onClick={handleClick}>
             Add Card
         </button>
-        
+
         {cards.map((card, index) => (
                 <Card 
-                    key={index} 
+                    key={index}
+                    cardClass={card.cardClass}
                     title={card.name} 
                     subtitle={card.major} 
                     description={card.attendence}
@@ -69,7 +72,7 @@ export default function EduCardInput() {
     )
 }
 
-function Education({ label, value, inputType, onChange }) {
+function EducationInput({ label, value, inputType, onChange }) {
     return (
         <>
             <label>
