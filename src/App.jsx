@@ -2,15 +2,15 @@
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
 import './App.css'
-import MakeInfoCard from './components/generalInput.jsx'
-import MakeEduCard from './components/eduInput.jsx'
+import InfoCardInput from './components/generalInput.jsx'
+import EduCardInput from './components/eduInput.jsx'
 
 
 function App() {
   return (
     <>
-    <MakeEduCard/>
-    <MakeInfoCard/>
+    <EduCardInput/>
+    <InfoCardInput/>
     </>
   )
 }

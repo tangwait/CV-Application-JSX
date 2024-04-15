@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
-export default function MakeInfoCard() {
+export default function InfoCardInput() {
+    const [cards, setCards] = useState([]);
     const [company, setCompany] = useState('');
     const [position, setPosition] = useState('');
     const [responsibilities, setResponsibilities] = useState('');
@@ -13,6 +14,25 @@ export default function MakeInfoCard() {
     }
     function handleResponsibilities(e) {
         setResponsibilities(e.target.value);
+    }
+
+    function handleClick() {
+        const newCard = {
+            company: company,
+            position: position,
+            responsibilities: responsibilities
+        };
+        setCards([...cards, newCard]);
+
+        setCompany('');
+        setPosition('');
+        setResponsibilities('');
+    }
+
+    function handleRemoveCard(index) {
+        const updatedCards = [...cards];
+        updatedCards.splice(index, 1);
+        setCards(updatedCards);
     }
 
     return (
@@ -31,9 +51,19 @@ export default function MakeInfoCard() {
         </form>
         </div>
 
-        <Card
-                company={company} position={position} responsibilities={responsibilities}
-            />
+        <button onClick={handleClick}>
+            Add Card
+        </button>
+
+        {cards.map((card, index) => (
+                <Card 
+                    key={index} 
+                    company={card.company} 
+                    position={card.position} 
+                    responsibilities={card.responsibilities}
+                    onRemove={() => handleRemoveCard(index)} 
+                />
+            ))}
         </>
     )
 }
@@ -54,17 +84,20 @@ function Education({ label, value, inputType, onChange }) {
     )
 }
 
-function Card({ company, position, responsibilities }) {
+function Card({ company, position, responsibilities, onRemove }) {
     return (
     <>
-        <div className='general-edu-card'>
-            Company: {company}
-            <br />
-            Position: {position}
-            <br />
-            Responsibilities
-            <br />
-            {responsibilities}
+        <div className='experience-card'>
+            <div>
+                Company: {company}
+                <br />
+                Position: {position}
+                <br />
+                Responsibilities
+                <br />
+                {responsibilities}
+            </div>
+            <button onClick={onRemove}>Remove</button>
         </div>
     </>
     )

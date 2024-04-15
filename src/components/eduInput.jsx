@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default function MakeEduCard() {
+export default function EduCardInput() {
     const [name, setName] = useState('');
     const [major, setMajor] = useState('');
     const [attendence, setAttendence] = useState('');
