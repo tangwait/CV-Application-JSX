@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Card from './Card';
 
 export default function InfoCardInput() {
     const [cards, setCards] = useState([]);
@@ -37,7 +38,7 @@ export default function InfoCardInput() {
 
     return (
         <>
-        <div className="general-edu-inputs">
+        <div className="general-experience-inputs">
         <form>
             <Education 
                 label="Company" value={company} inputType="text" onChange={handleCompany}
@@ -58,9 +59,9 @@ export default function InfoCardInput() {
         {cards.map((card, index) => (
                 <Card 
                     key={index} 
-                    company={card.company} 
-                    position={card.position} 
-                    responsibilities={card.responsibilities}
+                    title={card.company} 
+                    subtitle={card.position} 
+                    description={card.responsibilities}
                     onRemove={() => handleRemoveCard(index)} 
                 />
             ))}
@@ -81,24 +82,5 @@ function Education({ label, value, inputType, onChange }) {
                 />
             </label>
         </>
-    )
-}
-
-function Card({ company, position, responsibilities, onRemove }) {
-    return (
-    <>
-        <div className='experience-card'>
-            <div>
-                Company: {company}
-                <br />
-                Position: {position}
-                <br />
-                Responsibilities
-                <br />
-                {responsibilities}
-            </div>
-            <button onClick={onRemove}>Remove</button>
-        </div>
-    </>
     )
 }

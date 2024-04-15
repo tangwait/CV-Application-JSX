@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import Card from './Card';
 
 export default function EduCardInput() {
+    const [cards, setCards] = useState([])
     const [name, setName] = useState('');
     const [major, setMajor] = useState('');
     const [attendence, setAttendence] = useState('');
@@ -13,6 +15,25 @@ export default function EduCardInput() {
     }
     function handleAttendence(e) {
         setAttendence(e.target.value);
+    }
+
+    function handleClick() {
+        const newCard = {
+            name: name,
+            major: major,
+            attendence: attendence
+        };
+        setCards([...cards, newCard]);
+
+        setName('');
+        setMajor('');
+        setAttendence('');
+    }
+
+    function handleRemoveCard(index) {
+        const updatedCards = [...cards];
+        updatedCards.splice(index, 1);
+        setCards(updatedCards);    
     }
 
     return (
@@ -31,9 +52,19 @@ export default function EduCardInput() {
         </form>
         </div>
 
-        <Card
-                name={name} major={major} attendence={attendence}
-            />
+        <button onClick={handleClick}>
+            Add Card
+        </button>
+        
+        {cards.map((card, index) => (
+                <Card 
+                    key={index} 
+                    title={card.name} 
+                    subtitle={card.major} 
+                    description={card.attendence}
+                    onRemove={() => handleRemoveCard(index)} 
+                />
+            ))}
         </>
     )
 }
@@ -51,19 +82,5 @@ function Education({ label, value, inputType, onChange }) {
                 />
             </label>
         </>
-    )
-}
-
-function Card({ name, major, attendence }) {
-    return (
-    <>
-        <div className='general-edu-card'>
-            Name: {name}
-            <br />
-            Major: {major}
-            <br />
-            Attendence: {attendence}
-        </div>
-    </>
     )
 }
