@@ -1,0 +1,12 @@
+body {
+  display: flex;
+  flex: 1;
+  width: 80vw;
+  margin: 5% auto;
+}
+
+form {
+  display: flex;
+  padding: 2px;
+  gap: 4px;
+}
